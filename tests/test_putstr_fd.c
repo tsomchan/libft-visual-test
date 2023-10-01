@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_putstr_fd.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/31 22:02:37 by tsomchan          #+#    #+#             */
+/*   Updated: 2023/08/31 22:02:38 by tsomchan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "myft.h"
+
+void	test_putstr_fd(char *s, int fd)
+{
+	printcolor("---- --- --", "black");
+	printcolor(" \n", "reset");
+	ft_putstr_fd(s, fd);
+	printcolor(" \n", "reset");
+}
+
+void	run_putstr_fd(char **argv)
+{
+	if (find_test(argv, "2", "putstr_fd") == 1)
+	{
+		banner("ft_putstr_fd", "write() a string");
+		test_putstr_fd("test", 1);
+		test_putstr_fd("ทดสอบ", 1);
+		test_putstr_fd("😀 😃 😄 😁 😆 😅 😂 🤣", 1);
+	}
+}
