@@ -10,14 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "../src/myft.h"
 
-int	main(void)
+void	printsus(char *color)
 {
-	char	*color;
-
-	color = "red";
-	banner("sus", "");
 	ft_color(color);
 	printf("    ##############    \n");
 	printf("  ##             ###  \n");
@@ -39,3 +35,27 @@ int	main(void)
 	printf("   ######    ######   \n");
 	ft_color("reset");
 }
+
+int	main(int argc, char **argv)
+{
+	if (argc < 1)
+		return (0);
+
+	char	*color;
+
+	color = "red";
+	if (argv[1] && (
+		!strcmp(argv[1], "black") ||
+		!strcmp(argv[1], "red") ||
+		!strcmp(argv[1], "green") ||
+		!strcmp(argv[1], "yellow") ||
+		!strcmp(argv[1], "blue") ||
+		!strcmp(argv[1], "purple") ||
+		!strcmp(argv[1], "cyan") ||
+		!strcmp(argv[1], "white")))
+		color = argv[1];
+	banner("sus", "");
+	printsus(color);
+}
+
+// printf("color = \"%s\"\n", color);

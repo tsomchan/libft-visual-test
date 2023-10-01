@@ -94,17 +94,19 @@ git: git_add push
 
 #	my testing rules
 T_PTH		=	testing/
-MYFT		=	$(addprefix src/, coloring.c cosmetic.c result_compare.c \
+T_SRC_PTH	=	src/
+T_TEST_PTH	=	tests/
+MYFT		=	$(addprefix $(T_SRC_PTH), coloring.c cosmetic.c result_compare.c \
 			result_output.c result_text.c)
 T_HEADER	=	$(SRC) $(SRC_B) $(MYFT)
 T_SRC		=	src/main.c $(T_HEADER)
-T_SRC		+=	$(addprefix tests/test_, atoi.c bzero.c calloc.c isalnum.c \
+T_SRC		+=	$(addprefix $(T_TEST_PTH)test_, atoi.c bzero.c calloc.c isalnum.c \
 			isalpha.c isascii.c isdigit.c isprint.c itoa.c memchr.c memcmp.c \
 			memcpy.c memmove.c memset.c putchar_fd.c putendl_fd.c putnbr_fd.c \
 			putstr_fd.c split.c strchr.c strdup.c striteri.c strjoin.c \
 			strlcat.c strlcpy.c strlen.c strmapi.c strncmp.c strnstr.c \
 			strrchr.c strtrim.c substr.c tolower.c toupper.c)
-T_SRC		+=	$(addprefix tests/test_, lstnew.c lstadd_front.c lstsize.c \
+T_SRC		+=	$(addprefix $(T_TEST_PTH)test_, lstnew.c lstadd_front.c lstsize.c \
 			lstlast.c lstadd_back.c lstdelone.c lstiter.c lstmap.c)
 T_NAME		=	main.a
 
@@ -171,9 +173,9 @@ endif
 .PHONY += tests vals
 
 # my other rules
-STUFF	:=	$(SRC)
-STUFF	+=	testing/coloring.c testing/cosmetic.c testing/result_output.c testing/result_text.c
-STUFF	+=	testing/sus.c
+STUFF_PTH	=	stuff/
+STUFF	:=	$(MYFT)
+STUFF	+=	$(STUFF_PTH)sus.c
 
 sus:
 	cc -Wall -Wextra -Werror $(STUFF) -o $(T_NAME)
