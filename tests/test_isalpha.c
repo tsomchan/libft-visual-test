@@ -17,14 +17,14 @@ void	test_isalpha(int c)
 	int	o;
 	int	l;
 
-	divider_start();
-	print_result_text("input\t\t");
-	printf("%d (\'%c\')\n", c, c);
 	o = ft_isalpha(c);
 	l = isalpha(c);
-	print_result_text("output\t");
+	divider_start();
+	print_result_text("input ");
+	printf("%d (\'%c\')\t", c, c);
+	print_result_text("output ");
 	printf("%d\t", o);
-	print_result_text("libc\t");
+	print_result_text("libc ");
 	printf("%d ", l);
 	compare_int(o, l);
 	divider_end();

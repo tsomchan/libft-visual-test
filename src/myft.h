@@ -18,11 +18,20 @@
 # include <string.h>
 # include <ctype.h>
 # include <limits.h>
-// # define BLACK "black"
+# define BLACK "\033[1;30m"
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define PURPLE "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define WHITE "\033[1;37m"
+# define RESET_C "\033[0m"
 
 //	MY TEST FUNCTIONS
 //	coloring.c
-void	ft_color(char *color);
+void	set_color(char *color);
+char	*strtocolor(char *str);
 void	printcolor(char *s, char *color);
 //	cosmetic.c
 void	banner_border(int len);
@@ -45,6 +54,8 @@ void	print_arr(int *arr, int size);
 void	print_str_arr(char **arr, int size);
 void	print_list(char *test, t_list *lst);
 //	result_text.c
+void	result_divider(int answer);
+void	print_result_text(char *s);
 void	print_error_text(char *s);
 void	print_result_text(char *s);
 void	print_compare_text(char *s);

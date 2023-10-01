@@ -15,39 +15,49 @@
 #include <stdio.h>
 #include "myft.h"
 
-void	ft_color(char *colorstr)
+void	set_color(char *colorstr)
+{
+	printf("%s", colorstr);
+}
+
+char	*strtocolor(char *str)
 {
 	char	*set;
 	char	*color;
+	int	i;
 
-	color = strdup(colorstr);
+	color = strdup(str);
+	i = -1;
+	while (color[++i])
+		color[i] = tolower(color[i]);
 	if (strcmp(color, "black") == 0)
-		set = "[1;30m";
+		set = BLACK;
 	else if (strcmp(color, "red") == 0)
-		set = "[1;31m";
+		set = RED;
 	else if (strcmp(color, "green") == 0)
-		set = "[1;32m";
+		set = GREEN;
 	else if (strcmp(color, "yellow") == 0)
-		set = "[1;33m";
+		set = YELLOW;
 	else if (strcmp(color, "blue") == 0)
-		set = "[1;34m";
+		set = BLUE;
 	else if (strcmp(color, "purple") == 0)
-		set = "[1;35m";
+		set = PURPLE;
 	else if (strcmp(color, "cyan") == 0)
-		set = "[1;36m";
+		set = CYAN;
 	else if (strcmp(color, "white") == 0)
-		set = "[1;37m";
+		set = WHITE;
 	else if (strcmp(color, "reset") == 0)
-		set = "[0m";
+		set = RESET_C;
 	else
-		set = "[0m";
-	printf("\033%s", set);
-	free(color);
+		set = NULL;
+	return (free(color), set);
 }
 
 void	printcolor(char *s, char *color)
 {
-	ft_color(color);
+	set_color(color);
+	// printf("%s", color);
 	printf("%s", s);
-	ft_color("reset");
+	// printf("%s", RESET_C);
+	set_color(RESET_C);
 }

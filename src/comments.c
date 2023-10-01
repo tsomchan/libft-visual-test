@@ -64,7 +64,7 @@
 	memset_l3[1] = 2;
 	memset_l3[2] = 3;
 	divider_start();
-	printcolor("| ", "blue"); 	printf("input		: ");
+	printcolor("| ", BLUE); 	printf("input		: ");
 		for (int i=0; i<3; i++)
 			printf("%d ", memset_o3[i]);
 	// print_arr(memset_o3, 3);
@@ -72,12 +72,12 @@
 	printf(" | c = %d | len = %d\n", 42, 3);
 	memset(memset_l3, 42, 3);
 	ft_memset(memset_o3, 42, 3);
-	printcolor("| ", "blue"); 	printf("libc		: ");
+	printcolor("| ", BLUE); 	printf("libc		: ");
 	// print_arr(memset_l3, 3);
 		for (int i=0; i<3; i++)
 			printf("%d ", memset_l3[i]);
 	printf("\n");
-	printcolor("| ", "blue"); 	printf("output	: ");
+	printcolor("| ", BLUE); 	printf("output	: ");
 	// print_arr(memset_o3, 3);
 		for (int i=0; i<3; i++)
 			printf("%d ", memset_o3[i]);

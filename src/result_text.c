@@ -12,41 +12,56 @@
 
 #include "myft.h"
 
+void	result_divider(int answer)
+{
+	char *color;
+
+	if (answer == 0)
+		color = RED;
+	else if (answer == 1)
+		color = GREEN;
+	else if (answer == -1)
+		color = YELLOW;
+	else
+		color = BLUE;
+	printcolor("| ", color);
+}
+
 void	print_error_text(char *s)
 {
-	printcolor("| ", "blue");
-	printcolor("ERROR!\n", "yellow");
+	printcolor("| ", BLUE);
+	printcolor("ERROR!\n", YELLOW);
 	if (s && *s != 0)
 	{
 		printf(" ");
-		printcolor(s, "black");
+		printcolor(s, BLACK);
 	}
 }
 
 void	print_result_text(char *s)
 {
-	printcolor("| ", "blue");
-	printcolor(s, "black");
-	printcolor(": ", "black");
+	printcolor("| ", BLUE);
+	printcolor(s, BLACK);
+	printcolor(": ", BLACK);
 }
 
 void	print_compare_text(char *s)
 {
-	printcolor("| ", "blue");
-	printcolor(s, "black");
+	printcolor("| ", BLUE);
+	printcolor(s, BLACK);
 }
 
 void	print_test_line(char *s)
 {
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	printf("%s", s);
 }
 
 char	chr_rpc(unsigned int n, char c)
 {
-	ft_color("black");
+	set_color(BLACK);
 	printf("Function %s is called\n", __func__);
-	ft_color("reset");
+	set_color(RESET_C);
 	n = c;
 	return (n);
 }

@@ -12,22 +12,19 @@
 
 #include <stdio.h>
 #include <libc.h>
-// #include "../libft.h"
-
-void	ft_color(char *color);
-void	printcolor(char *s, char *color);
+#include "myft.h"
 
 void	banner_border(int len)
 {
 	int	i;
 
-	ft_color("blue");
+	set_color(BLUE);
 	printf("o");
 	i = len + 2;
 	while (--i >= 0)
 		printf("-");
 	printf("o\n");
-	ft_color("reset");
+	set_color(RESET_C);
 }
 
 void	banner(char *str, char *desc)
@@ -41,14 +38,14 @@ void	banner(char *str, char *desc)
 	else
 		len = strlen(str) + strlen(desc) + 3;
 	banner_border(len);
-	printcolor("|", "blue");
-	ft_color("white");
+	printcolor("|", BLUE);
+	set_color(WHITE);
 	printf(" %s ", str);
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	if (*desc != 0)
 	{
-		printcolor(desc, "black");
-		printcolor(" |", "blue");
+		printcolor(desc, BLACK);
+		printcolor(" |", BLUE);
 	}
 	printf("\n");
 	banner_border(len);
@@ -61,17 +58,17 @@ void	divider_start(void)
 
 void	divider_end(void)
 {
-	ft_color("blue");
+	set_color(BLUE);
 	printf("o-------------------------------------- --- -- -\n");
-	ft_color("reset");
+	set_color(RESET_C);
 }
 
 void	program_header(void)
 {
-	ft_color("purple");
+	set_color(PURPLE);
 	printf("o-------------------------------------- --- -- -\n");
 	printf("o------------------------------- -- --- -\n");
 	printf("o------------------------ --- -- -\n");
 	printf("o----------------- -- -- -- -\n");
-	ft_color("reset");
+	set_color(RESET_C);
 }

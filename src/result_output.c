@@ -80,7 +80,7 @@ void	check_next_list(t_list **lst)
 
 void	print_list(char *test, t_list *lst)
 {
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	printf("{lst}\t\t= ");
 	if (!lst)
 		printf("%s ", (char *)lst);
