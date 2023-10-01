@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_calloc(size_t count, size_t size, void *str)
 {

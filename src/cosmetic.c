@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <libc.h>
-#include "../libft.h"
+// #include "../libft.h"
 
 void	ft_color(char *color);
 void	printcolor(char *s, char *color);

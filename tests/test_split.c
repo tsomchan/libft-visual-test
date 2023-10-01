@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_split(char const *s, char c, char **p, int test_size)
 {

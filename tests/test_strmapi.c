@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_strmapi(char const *s, char (*f)(unsigned int, char))
 {

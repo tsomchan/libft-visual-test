@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_memcpy(void *dst, void *dst2, const void *src, size_t n)
 {

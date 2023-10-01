@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-#include "myft.h"
-#include "testft.h"
+#include "../../libft/libft.h"
+#include "../tests/testft.h"
 
 //	Part 1 - Libc functions - basics
 void	run_part1(char **argv)

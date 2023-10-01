@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+.SILENT:
+
 PRJ_PTH	=	../libft/
 
 NAME	=	libft.a
@@ -57,8 +59,12 @@ bonus: $(OBJ_B)
 clear:
 	clear
 
-norm: clear
+norm:
+ifdef v
+	norminette $(PRJ_PTH)ft_$(v).c
+else
 	norminette $(SRC) $(SRC_B)
+endif
 	norminette --version
 
 log: clear
@@ -107,17 +113,18 @@ test:
 	clear
 ifdef v
 	./$(T_NAME) $(v)
-	norminette ft_$(v).c
+#	norminette $(PRJ_PTH)ft_$(v).c
 else
 	./$(T_NAME)
 endif
+	make norm
 
-val:
+val: norm
 	$(CC) $(CFLAG) $(T_SRC) -o $(T_NAME)
 	clear
 ifdef v
 	valgrind ./$(T_NAME) $(v)
-	norminette ft_$(v).c
+#	norminette $(PRJ_PTH)ft_$(v).c
 else
 	valgrind ./$(T_NAME)
 endif

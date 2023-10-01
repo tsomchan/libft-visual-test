@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_lstdelone(char *test, t_list *lst, void (*del)(void *))
 {

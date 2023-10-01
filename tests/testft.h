@@ -12,6 +12,7 @@
 
 #ifndef TESTFT_H
 # define TESTFT_H
+# include "../src/myft.h"
 
 //	Part 1 test
 void	run_isalpha(char **argv);

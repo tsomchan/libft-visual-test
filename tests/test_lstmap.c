@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/myft.h"
-
+#include "testft.h"
 
 void	*test_lstmap_strlen(void *content)
 {

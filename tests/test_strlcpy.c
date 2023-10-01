@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_strlcpy(char *dst, char *dst2, const char *src, size_t dstsize)
 {

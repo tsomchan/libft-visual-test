@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "myft.h"
+#include "testft.h"
 
 void	test_memmove(void *dst, void *dst2,
 			const void *src, const void *src2, size_t n)
