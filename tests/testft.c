@@ -12,9 +12,16 @@
 
 #include "testft.h"
 
-void	printspace(char *s, int n)
+void	printspace_n(int space)
+{
+	while (space--)
+		printf(" ");
+}
+
+int	count_space(char *s, int space)
 {
 	int size;
+	int count;
 
 	size = 0;
 	if (!s)
@@ -22,16 +29,19 @@ void	printspace(char *s, int n)
 	if (s)
 		while (*(s++))
 			size += 1;
-	while (size++ < n)
-		printf(" ");
+	count = 0;
+	while (size++ < space)
+		count++;
+	return (count);
 }
 
-void	printspace_null(char *s, unsigned int n, int space)
+int	count_space_null(char *s, unsigned int len, int space)
 {
 	int size;
+	int count;
 
 	size = 0;
-	while (n--)
+	while (len--)
 	{
 		if  (*s == '\0' && *(s + 1) != '\0')
 			size += 4;
@@ -41,63 +51,86 @@ void	printspace_null(char *s, unsigned int n, int space)
 			size += 1;
 		s++;
 	}
+	count = 0;
 	while (space-- > size)
-		printf(" ");
+		count++;
+	return (count);
+}
+
+void	print_result(char *data_type, void *input, int space)
+{
+	unsigned char	*data;
+	int				*number;
+
+	data = NULL;
+	number = NULL;
+	if (!strcmp(data_type, STR) || !strcmp(data_type, CHAR))
+	{
+		data = (unsigned char *)input;
+		if (!strcmp(data_type, STR))
+			printf("\"%s\" ", data);
+		else if (!strcmp(data_type, CHAR))
+			printf("'%c' ", *data);
+		printspace_n(count_space(input, space));
+	}
+	else if (!strcmp(data_type, SIZE_T) || !strcmp(data_type, INT))
+	{
+		char	*n_str;
+
+		number = (int *)input;
+		n_str = ft_itoa(*number);
+		printspace_n(count_space(n_str, space));
+		if (!strcmp(data_type, SIZE_T))
+			printf("%zu ", (size_t)*number);
+		else if (!strcmp(data_type, INT))
+			printf("%d ", (int)*number);
+		free(n_str);
+	}
+}
+
+void	print_result_null(char *data_type, void *input, size_t len, int space)
+{
+	int				*number;
+
+	number = NULL;
+	if (!strcmp(data_type, STR))
+	{
+		print_null(input, len);
+		printspace_n(count_space_null(input, len, space));
+	}
 }
 
 void	testft_char(int c, int o, int l)
 {
-	print_result_text("input ");	printf("%d\t(\'%c\')\t", c, c);
-	print_result_text("output ");	printf("%d\t", o);
-	print_result_text("libc ");		printf("%d ", l);
+	print_result_text("input ");
+	print_result(INT, &c, 4);
+	print_result(CHAR, &c, 1);
+	print_result_text("output ");
+	print_result(INT, &o, 4);
+	print_result_text("libc ");
+	print_result(INT, &l, 4);
 	compare_int(o, l);
 	printf("\n");
 }
 
-void	testft_len(const char *s)
+void	testft_len(const char *s, size_t o, size_t l)
 {
-	size_t	o;
-	size_t	l;
-	char	*o_str;
-	char	*l_str;
-
-	print_result_text("input ");	printf("\"%s\" \t", s);
-	printspace((char *)s, 8);		printf("\t");
-	o = ft_strlen(s);
-	l = strlen(s);
-	o_str = ft_itoa(o);
-	l_str = ft_itoa(l);
-	print_result_text("o ");	printf("%zu", o);
-	printspace(o_str, 3);	printf("\t");
-	print_result_text("l ");	printf("%zu", l);
-	printspace(l_str, 3);	printf("\t");
+	print_result_text("input ");
+	print_result(STR, (char *)s, 12);
+	print_result_text("o "); print_result(SIZE_T, &o, 3);
+	print_result_text("l "); print_result(SIZE_T, &l, 3);
 	compare_int(o, l);
 	printf("\n");
-	free(o_str);
-	free(l_str);
 }
 
-void	testft_atoi(const char *str)
+void	testft_atoi(const char *str, int o, int l)
 {
-	int	o;
-	int	l;
-	char	*o_str;
-	char	*l_str;
-
-	print_result_text("input\t");
-	printf("\"%s\"", str);
-	printspace((char *)str, 30);
+	print_result_text("input\t"); print_result(STR, (char *)str, 30);
 	printf("\t");
-	o = ft_atoi(str);
-	l = atoi(str);
-	o_str = ft_itoa(o);
-	l_str = ft_itoa(l);
-	print_result_text("o "); printspace(o_str, 12); printf("%d ", o);
-	print_result_text("l "); printspace(l_str, 12); printf("%d ", l);
+	print_result_text("o "); print_result(INT, &o, 12);
+	print_result_text("l "); print_result(INT, &l, 12);
 	compare_int(o, l);
 	printf("\n");
-	free(o_str);
-	free(l_str);
 }
 
 void testft_strl(char *dst, char *dst2, const char *src, size_t dstsize,
@@ -105,24 +138,17 @@ void testft_strl(char *dst, char *dst2, const char *src, size_t dstsize,
 {
 	int	o;
 	int	l;
-	char	*o_str;
-	char	*l_str;
 
-	o_str = NULL;
-	l_str = NULL;
 	print_result_text("input\t");
 	printf("dst = \"%s\" | src = \"%s\" | size = %zu\n", dst, src, dstsize);
 	if (dst && dst2 && src)
 	{
 		o = f1(dst, src, dstsize);
 		l = f2(dst2, src, dstsize);
-		o_str = ft_itoa(o);
-		l_str = ft_itoa(l);
-		print_result_text("o "); printf("%d ", o);	printspace(o_str, 3);
-		print_null(dst, dstsize + 1);				printspace_null((char *)dst, dstsize + 1, 20);	//printf("\t");
-		print_result_text("l "); printf("%d ", l);	printspace(l_str, 3);
-		print_null((char *)dst2, dstsize + 1);		printspace_null((char *)dst2, dstsize + 1, 20);	//printf("\t");
-		// printf("\n");
+		print_result_text("o ");
+		print_result(INT, &o, 3); print_result_null(STR, dst, dstsize + 1, 20);
+		print_result_text("l ");
+		print_result(INT, &l, 3); print_result_null(STR, dst2, dstsize + 1, 20);
 		print_compare_text("Int "); compare_int(o, l);
 		print_compare_text("Str "); compare_null(dst, (char *)dst2, dstsize + 1);
 	}
@@ -130,34 +156,27 @@ void testft_strl(char *dst, char *dst2, const char *src, size_t dstsize,
 		print_error_text("");
 	printf("\n");
 	divider_end();
-	free(o_str);
-	free(l_str);
 }
 
 void testft_bzero(void *s, void *s2, size_t n)
 {
 	size_t	ini_s;
 	size_t	ini_s2;
-	char	*n_str;
 
-	n_str = ft_itoa(n);
 	ini_s = strlen(s);
 	ini_s2 = strlen(s2);
 	print_result_text("input ");
-	printf("\"%s\" ", s);	printspace(s, 10);
-	printf("| %zu ", n);	printspace(n_str, 2);
+	print_result("str", s, 10);
+	print_result("size_t", &n, 2);
 	ft_bzero(s, n);
 	bzero(s2, n);
-	print_result_text("o "); print_null(s, ini_s);
-						printspace_null(s, ini_s, 16);
-	print_result_text("l "); print_null(s2, ini_s2);
-						printspace_null(s2, ini_s2, 16);
+	print_result_text("o "); print_result_null(STR, s, ini_s, 16);
+	print_result_text("l "); print_result_null(STR, s2, ini_s2, 16);
 	if (ini_s > ini_s2)
 		compare_null(s, s2, ini_s);
 	else
 		compare_null(s, s2, ini_s2);
 	printf("\n");
-	free(n_str);
 }
 
 void testft_mem_chr(void *b, int c, size_t len, void *o, void *l)
@@ -167,10 +186,11 @@ void testft_mem_chr(void *b, int c, size_t len, void *o, void *l)
 	len_str = ft_itoa(len);
 	divider_start();
 	print_result_text("input ");
-	printf("\"%s\" ", b);							printspace(b, 10);
-	printf("| '%c' | %zu ", c, len);				printspace(len_str, 3);
-	print_result_text("o ");	printf("%s", o);	printspace(o, 15);
-	print_result_text("l ");	printf("%s", l);	printspace(o, 15);
+	print_result(STR, b, 10);
+	printf("c = ");		print_result(CHAR, &c, 2);
+	printf("len =");	print_result(SIZE_T, &len, 3);
+	print_result_text("o "); print_result(STR, o, 15);
+	print_result_text("l "); print_result(STR, l, 15);
 	compare_str(o, l);
 	printf("\n");
 	free(len_str);
@@ -188,13 +208,11 @@ void testft_mem_arr(void *dst, void *dst2, const void *src, const void *src2,
 {
 	char	*o;
 	char	*l;
-	char *len_str;
 
-	len_str = ft_itoa(len);
 	print_result_text("input ");
-	printf("\"%s\" ", dst);		printspace(dst, 12);
-	printf("| \"%s\" ", src);	printspace((char *)src, 12);
-	printf("| %zu", len);		printspace(len_str, 3);
+	printf("dst = "); print_result(STR, dst, 12);
+	printf("src = "); print_result(STR, (char *)src, 12);
+	printf("len = "); print_result(SIZE_T, &len, 3);
 	o = NULL;	l = NULL;
 	if (!strcmp(ftname, MEMCPY) && check_overlap(dst, (void *)src) && dst > src)
 		{ printcolor("| ", BLUE); printcolor("OVERLAP", YELLOW); }
@@ -204,25 +222,22 @@ void testft_mem_arr(void *dst, void *dst2, const void *src, const void *src2,
 			{o = ft_memcpy(dst, src, len); l = memcpy(dst2, src2, len); }
 		else if (!strcmp(ftname, MEMMOVE))
 			{o = ft_memmove(dst, src, len);	l = memmove(dst2, src2, len);}
-		print_result_text("o ");
-		printf("%s", o);	printspace(o, 12);
-		print_result_text("l ");
-		printf("%s", l);	printspace(l, 12);
+		print_result_text("o "); print_result(STR, o, 12);
+		print_result_text("l "); print_result(STR, l, 12);
 		compare_str(o, l);
 	}
 	printf("\n");
-	free(len_str);
 }
 
 void testft_strchr(const char*s, int c, char *o, char *l)
 {
 	print_result_text("input ");
-	printf("\"%s\"", s);	printspace((char *)s, 15);
+	print_result(STR, (char *)s, 15);
 	if ((!isprint(c) && c <= CHAR_MAX)) printf(" ");
 	if ((!isprint(c) && c > 500)) printf(" ");
 	printf("'%c' ", c);
-	print_result_text("o "); printf("\"%s\"", o);	printspace(o, 12);
-	print_result_text("l "); printf("\"%s\"", l);	printspace(l, 12);
+	print_result_text("o "); print_result(STR, o, 12);
+	print_result_text("l "); print_result(STR, l, 12);
 	compare_str(o, l);
 	printf("\n");
 }
@@ -230,83 +245,67 @@ void testft_strchr(const char*s, int c, char *o, char *l)
 void testft_strnstr(const char *haystack, const char *needle, size_t len,
 						char *o, char *l)
 {
-	char *len_str;
+	int negative[1];
 
-	len_str = ft_itoa(len);
+	negative[0] = -1;
 	print_result_text("input ");
-	printf("\"%s\"", haystack);	printspace((char *)haystack, 30);
-	printf("\"%s\"", needle);	printspace((char *)needle, 10);
+	print_result(STR, (char *)haystack, 30);
+	print_result(STR, (char *)needle, 10);
 	if (len + 1 == 0)
-		{printf("-1");					printspace("-1", 4);}
+		print_result(INT, &negative, 4);
 	else
-		{printf("%zu", len);			printspace(len_str, 4);}
-	print_result_text("o "); printf("%s", o); printspace(o, 10);
-	print_result_text("l "); printf("%s", l); printspace(l, 10);
+		print_result(SIZE_T, &len, 4);
+	print_result_text("o "); print_result(STR, o, 10);
+	print_result_text("l "); print_result(STR, l, 10);
 	compare_str(o, l);
 	printf("\n");
-	free(len_str);
 }
 
 void testft_cmp(const char *s1, const char *s2, size_t n, int o, int l,
 				char *ftname)
 {
-	char	*n_str;
-	char	*o_str;
-	char	*l_str;
-
-	n_str = ft_itoa(n);
-	o_str = ft_itoa(o);
-	l_str = ft_itoa(l);
 	print_result_text("input ");
-	printf("\"%s\"", s1);		printspace((char *)s1, 10);
-	printf("\"%s\"", s2);		printspace((char *)s2, 10);
-	printf("%zu", n);			printspace(n_str, 3);
+	print_result(STR, (char *)s1, 10);
+	print_result(STR, (char *)s2, 10);
+	print_result(SIZE_T, &n, 3);
 	if (!strcmp(ftname, MEMCMP) && (((!s1 || !s2)) && n != 0))
 		print_error_text("");
 	else
 	{
-		print_result_text("o ");	printspace(o_str, 5); printf("%d ", o);
-		print_result_text("l ");	printspace(l_str, 5); printf("%d ", l);
+		print_result_text("o "); print_result(INT, &o, 5);
+		print_result_text("l "); print_result(INT, &l, 5);
 		compare_int(o, l);
 	}
 	printf("\n");
-	free(n_str);
-	free(o_str);
-	free(l_str);
 }
 
 void testft_calloc(size_t count, size_t size, void *str, void *o, void *l)
 {
-	char	*count_str;
-	char	*size_str;
-
-	count_str = ft_itoa(count);
-	size_str = ft_itoa(size);
 	print_result_text("input ");
-	printf("count = %zu", count);		printspace(count_str, 5);
-	printf("| size = %zu", size);		printspace(size_str, 5);
-	printf("| str = \"%s\"", str);	printspace(str, 15); printf("\n");
+	printf("count =");	print_result(SIZE_T, &count, 5);
+	printf("    size =");	print_result(SIZE_T, &size, 5);
+	printf("    str = ");	print_result(STR, str, 15);
+	printf("\n");
 	if (str != 0 && count > 0 && size > 0)
 		{ memcpy(o, str, count); memcpy(l, str, count); }
 	else if (str == 0 || count == 0 || size == 0)
 		{ o = "not used"; l = "not used"; }
-	print_result_text("o "); printf("\"%s\"", o);	printspace(o, 15);
-	print_result_text("l "); printf("\"%s\"", l);	printspace(l, 15);
+	print_result_text("o "); print_result(STR, o, 15);
+	print_result_text("l "); print_result(STR, l, 15);
 	compare_mem(o, l, count);
 	printf("\n");
 	divider_end();
-	free(count_str);
-	free(size_str);
 }
 
 void testft_strdup(const char *s1, char *o, char *l)
 {
-	print_result_text("input "); printf("\"%s\" ", s1); printspace((char *)s1, 10);
+	print_result_text("input ");
+	print_result(STR, (char *)s1, 10);
 	if (s1)
 	{
 		divider_start();
-		print_result_text("o "); printf("\"%s\"", o);	printspace(o, 10);
-		print_result_text("l "); printf("\"%s\" ", l);	printspace(l, 10);
+		print_result_text("o "); print_result(STR, (char *)o, 10);
+		print_result_text("l "); print_result(STR, (char *)l, 10);
 		compare_str(o, l);
 	}
 	else

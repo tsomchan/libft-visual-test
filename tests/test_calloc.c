@@ -86,11 +86,6 @@ void	run_calloc(char **argv)
 		test_calloc(10, 0, 0);
 		test_calloc(10, 0, "");
 		test_calloc(1, 1, 0);
-		test_calloc(6, sizeof(char), "12345");
-		test_calloc(1, sizeof(char), "");
-		test_calloc(10, 0, 0);
-		test_calloc(10, 0, "");
-		test_calloc(1, 1, 0);
 		test_calloc_intl(10, sizeof(int long),
 		 	(int long[]){1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
 		test_calloc_intl(10, sizeof(int long),

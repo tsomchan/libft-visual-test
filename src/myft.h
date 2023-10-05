@@ -57,7 +57,6 @@ void	print_list(char *test, t_list *lst);
 void	result_divider(int answer);
 void	print_result_text(char *s);
 void	print_error_text(char *s);
-void	print_result_text(char *s);
 void	print_compare_text(char *s);
 void	print_test_line(char *s);
 char	chr_rpc(unsigned int n, char c);

@@ -14,7 +14,7 @@
 
 void	test_strlen(const char *s)
 {
-	testft_len(s);
+	testft_len(s, ft_strlen(s), strlen(s));
 }
 
 void	run_strlen(char **argv)

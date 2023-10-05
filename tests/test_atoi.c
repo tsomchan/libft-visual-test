@@ -14,7 +14,7 @@
 
 void	test_atoi(const char*str)
 {
-	testft_atoi(str);
+	testft_atoi(str, ft_atoi(str), atoi(str));
 }
 
 char	*increase_nbr(char *str, int inc)

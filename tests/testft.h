@@ -18,10 +18,19 @@
 # define MEMMOVE "memmove"
 # define STRNCMP "strncmp"
 # define MEMCMP "memcmp"
+//	define data type names
+# define INT	"int"
+# define STR	"str"
+# define CHAR	"char"
+# define SIZE_T	"size_t"
 
+//
+void	printspace_n(int space);
+int		count_space(char *s, int space);
+int		count_space_null(char *s, unsigned int len, int space);
 //	Part 1 test functions
 void	testft_char(int c, int o, int l);
-void	testft_len(const char *s);
+void	testft_len(const char *s, size_t o, size_t l);
 void	testft_strl(char *dst, char *dst2, const char *src, size_t dstsize
 			,size_t (f1)(char *, const char*, size_t)
 			,size_t (f2)(char *, const char*, size_t));
@@ -34,7 +43,7 @@ void	testft_strnstr(const char *haystack, const char *needle, size_t len,
 						char *o, char *l);
 void	testft_cmp(const char *s1, const char *s2, size_t n, int o, int l,
 				char *ftname);
-void	testft_atoi(const char *str);
+void	testft_atoi(const char *str, int o, int l);
 void	testft_calloc(size_t count, size_t size, void *str, void *o, void *l);
 void	testft_strdup(const char *s1, char *o, char *l);
 
