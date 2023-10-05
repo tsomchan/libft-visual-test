@@ -17,7 +17,7 @@ void	test_lstdelone(char *test, t_list *lst, void (*del)(void *))
 	print_list(test, lst);
 	if (!del)
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("del\t\t= %s\n", (char *)del);
 	}
 	if (lst)
@@ -25,7 +25,7 @@ void	test_lstdelone(char *test, t_list *lst, void (*del)(void *))
 		ft_lstdelone(lst, del);
 		if (!lst)
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printf("lstdelone\t= %s\n", (char *)lst);
 		}
 		else if(lst)
@@ -35,7 +35,7 @@ void	test_lstdelone(char *test, t_list *lst, void (*del)(void *))
 		ft_lstdelone(lst, del);
 		if (!lst)
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printf("lstdelone\t= %s\n", (char *)lst);
 		}
 	// if (lst)	

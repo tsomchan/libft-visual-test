@@ -21,10 +21,11 @@ void	test_strtrim(char const *s1, char const *set, char *p)
 	printf("s1 = \"%s\"\t| set = \"%s\"\n", s1, set);
 	o = ft_strtrim(s1, set);
 	print_result_text("output\t");
-	printf("\"%s\"\n", o);
+	printf("\"%s\" ", o);
 	print_result_text("predict\t");
 	printf("\"%s\" ", p);
 	compare_str(o, p);
+	printf("\n");
 	divider_end();
 	free(o);
 }

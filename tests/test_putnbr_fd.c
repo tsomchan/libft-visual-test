@@ -14,10 +14,10 @@
 
 void	test_putnbr_fd(int n, int fd)
 {
-	printcolor("---- --- --", "black");
-	printcolor(" \n", "reset");
+	printcolor("---- --- --", BLACK);
+	printcolor(" \n", RESET_C);
 	ft_putnbr_fd(n, fd);
-	printcolor(" \n", "reset");
+	printcolor(" \n", RESET_C);
 }
 
 void	run_putnbr_fd(char **argv)

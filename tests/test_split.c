@@ -23,14 +23,16 @@ void	test_split(char const *s, char c, char **p, int test_size)
 	o = ft_split(s, c);
 	print_result_text("output\t");
 	print_str_arr(o, test_size);
+	printf("\t");
 	print_result_text("predict\t");
 	print_str_arr(p, test_size);
 	compare_str_arr(o, p, test_size);
-	divider_end();
+	printf("\n");
 	i = 0;
 	while (o[i] != 0)
 		free(o[i++]);
 	free(o);
+	divider_end();
 }
 
 void	run_split(char **argv)

@@ -18,7 +18,7 @@ void	test_lstadd_back(char *test, t_list **lst, t_list *new)
 		print_list(test, *lst);
 	else
 		print_test_line("the list is NULL\n");
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	if (!new)	
 		printf("new\t\t= %s\n", (char *)new);
 	else if (!strcmp(test, "str"))

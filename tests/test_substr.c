@@ -29,6 +29,7 @@ void	test_substr(char const *s, unsigned int start, size_t len, char *p)
 	print_result_text("predict\t");
 	print_null(p, len + 1);
 	compare_str(o, p);
+	printf("\n");
 	divider_end();
 	free(o);
 }

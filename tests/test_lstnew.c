@@ -17,11 +17,11 @@ void	test_lstnew(char *test, void *content)
 	t_list *node;
 
 	node = 0;
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	if (!node)
 		printf("initialized with empty node\n");
 	node = ft_lstnew(content);
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	if (node)
 	{
 		if (!strcmp(test, "str"))

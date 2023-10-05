@@ -32,12 +32,12 @@ void	test_lstmap(char *test, t_list *lst, void *(*f)(void *), void (*del)(void *
 	print_list(test, lst);
 	if (!f)
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("f\t\t= %s\n", (char *)f);
 	}
 	if (!del)
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("del\t\t= %s\n", (char *)del);
 	}
 	test_lst = ft_lstmap(lst, f, del);
@@ -45,7 +45,7 @@ void	test_lstmap(char *test, t_list *lst, void *(*f)(void *), void (*del)(void *
 	{
 		if (!lst)
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printf("lstmap\t= %s\n", (char *)test_lst);
 		}
 		else if(lst)
@@ -53,7 +53,7 @@ void	test_lstmap(char *test, t_list *lst, void *(*f)(void *), void (*del)(void *
 	}
 	else
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("lstmap\t= %s\n", (char *)lst);
 	}
 	ft_lstclear(&test_lst, del);

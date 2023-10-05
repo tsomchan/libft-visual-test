@@ -69,7 +69,6 @@ void	print_str_arr(char **arr, int size)
 	}
 	else
 		printf("\"(null)\"");
-	printf("\n");
 }
 
 void	check_next_list(t_list **lst)

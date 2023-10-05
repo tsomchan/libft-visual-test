@@ -25,7 +25,7 @@ void	test_strjoin(char const *s1, char const *s2, char *p)
 	print_result_text("predict\t");
 	print_null(p, strlen(p) + 1);
 	compare_str(o, p);
-	divider_end();
+	printf("\n");
 	free(o);
 }
 

@@ -26,7 +26,7 @@ void	test_lstiter(char *test, t_list *lst, void (*f)(void *))
 	print_list(test, lst);
 	if (!f)
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("f\t\t= %s\n", (char *)f);
 	}
 	if (lst)
@@ -34,7 +34,7 @@ void	test_lstiter(char *test, t_list *lst, void (*f)(void *))
 		ft_lstiter(lst, f);
 		if (!lst)
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printf("lstiter\t= %s\n", (char *)lst);
 		}
 		else if(lst)
@@ -44,7 +44,7 @@ void	test_lstiter(char *test, t_list *lst, void (*f)(void *))
 		ft_lstiter(lst, f);
 		if (!lst)
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printf("lstiter\t= %s\n", (char *)lst);
 		}
 	divider_end();

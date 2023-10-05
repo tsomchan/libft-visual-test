@@ -14,7 +14,7 @@
 
 void	print_lstlast(char *test, t_list *lst)
 {
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	if (!lst)
 	{
 		printf("lstlast\t\t= %s\n", (char *)lst);
@@ -24,7 +24,7 @@ void	print_lstlast(char *test, t_list *lst)
 		if (!strcmp(test, "str"))
 		{
 			printf("lstlast->content\t= \"%s\"\n", lst->content);
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			if (lst->next)
 				printf("lstlast->next\t\t= \"%s\"\n", (lst->next)->content);
 			else
@@ -33,7 +33,7 @@ void	print_lstlast(char *test, t_list *lst)
 		if (!strcmp(test, "int"))
 		{
 			printf("lstlast->content\t= %d\n", *(int *)lst->content);
-			printcolor("| ", "blue");	
+			printcolor("| ", BLUE);	
 			if (lst->next)
 				printf("lstlast->next\t\t= %d\n", *(int *)(lst->next)->content);
 			else
@@ -53,7 +53,7 @@ void	test_lstlast(char *test, t_list *lst)
 	}
 	else
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("the list is NULL\n");
 	}
 	node = ft_lstlast(lst);

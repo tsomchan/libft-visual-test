@@ -41,7 +41,7 @@ void	test_memchr_arr(const void *s, const void *s2, int c, size_t n)
 			compare_arr(o, l, n);
 		else
 		{
-			printcolor("| ", "blue");
+			printcolor("| ", BLUE);
 			printcolor("XX-FALSE-XX\n", "red");
 		}
 	}

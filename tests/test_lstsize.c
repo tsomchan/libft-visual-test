@@ -20,10 +20,10 @@ void	test_lstsize(char *test, t_list *lst)
 	}
 	else
 	{
-		printcolor("| ", "blue");
+		printcolor("| ", BLUE);
 		printf("the list is NULL\n");
 	}
-	printcolor("| ", "blue");
+	printcolor("| ", BLUE);
 	printf("lstsize\t= %d\n", ft_lstsize(lst));
 	divider_end();
 }

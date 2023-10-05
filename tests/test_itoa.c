@@ -25,7 +25,7 @@ void	test_itoa(int n, char *p)
 	print_result_text("prediction\t");
 	printf("\"%s\" ", p);
 	compare_str(o, p);
-	divider_end();
+	printf("\n");
 	free(o);
 }
 

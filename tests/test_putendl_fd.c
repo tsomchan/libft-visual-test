@@ -14,10 +14,10 @@
 
 void	test_putendl_fd(char *s, int fd)
 {
-	printcolor("---- --- --", "black");
-	printcolor(" \n", "reset");
+	printcolor("---- --- --", BLACK);
+	printcolor(" \n", RESET_C);
 	ft_putendl_fd(s, fd);
-	printcolor(" \n", "reset");
+	printcolor(" \n", RESET_C);
 }
 
 void	run_putendl_fd(char **argv)
