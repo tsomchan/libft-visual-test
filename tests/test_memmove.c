@@ -15,41 +15,7 @@
 void	test_memmove(void *dst, void *dst2,
 			const void *src, const void *src2, size_t n)
 {
-	char	*o;
-	char	*l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("\"%s\" | \"%s\" | %zu\n", dst, src, n);
-	if ((dst && dst2) || (src && src2))
-	{
-		// if (!check_overlap(dst, (void *)src) && !check_overlap(dst, (void *)dst2))
-		// {
-		o = ft_memmove(dst, src, n);
-		l = memmove(dst2, src2, n);
-		print_result_text("output\t");
-		printf("%s + '%c'\t", o, o[strlen(o)]);
-		print_result_text("libc\t");
-		printf("%s + '%c'\n", l, l[strlen(l)]);
-		compare_str(o, l);
-		// }
-		// else
-		// {
-		// 	printcolor("| ", "blue");
-		// 	printcolor("ERROR!\n", "yellow");
-		// }
-	}
-	else
-	{
-		o = ft_memmove(dst, src, n);
-		l = memmove(dst2, src2, n);
-		print_result_text("output\t");
-		printf("%s\t", o);
-		print_result_text("libc\t");
-		printf("%s\n", l);
-		// compare_mem(o, l, 1);
-	}
-	divider_end();
+	testft_mem_arr(dst, dst2, src, src2, n, MEMMOVE);
 }
 
 void	test_memmove_lib(void *dst, const void *src, size_t n)
@@ -94,3 +60,40 @@ void	run_memmove(char **argv)
 	}
 }
 
+/*
+	char	*o;
+	char	*l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("\"%s\" | \"%s\" | %zu\n", dst, src, n);
+	if ((dst && dst2) || (src && src2))
+	{
+		// if (!check_overlap(dst, (void *)src) && !check_overlap(dst, (void *)dst2))
+		// {
+		o = ft_memmove(dst, src, n);
+		l = memmove(dst2, src2, n);
+		print_result_text("output\t");
+		printf("%s + '%c'\t", o, o[strlen(o)]);
+		print_result_text("libc\t");
+		printf("%s + '%c'\n", l, l[strlen(l)]);
+		compare_str(o, l);
+		// }
+		// else
+		// {
+		// 	printcolor("| ", "blue");
+		// 	printcolor("ERROR!\n", "yellow");
+		// }
+	}
+	else
+	{
+		o = ft_memmove(dst, src, n);
+		l = memmove(dst2, src2, n);
+		print_result_text("output\t");
+		printf("%s\t", o);
+		print_result_text("libc\t");
+		printf("%s\n", l);
+		// compare_mem(o, l, 1);
+	}
+	divider_end();
+*/

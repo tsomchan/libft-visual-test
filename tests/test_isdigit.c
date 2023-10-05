@@ -14,6 +14,21 @@
 
 void	test_isdigit(int c)
 {
+	testft_char(c, ft_isdigit(c), isdigit(c));
+}
+
+void	run_isdigit(char **argv)
+{
+	if (find_test(argv, "1", "isdigit") == 1)
+	{
+		banner("ft_isdigit", "");
+		test_isdigit('0');
+		test_isdigit(':');
+		test_isdigit('a');
+	}
+}
+
+/*
 	int	o;
 	int	l;
 
@@ -28,15 +43,4 @@ void	test_isdigit(int c)
 	printf("%d ", l);
 	compare_int(o, l);
 	divider_end();
-}
-
-void	run_isdigit(char **argv)
-{
-	if (find_test(argv, "1", "isdigit") == 1)
-	{
-		banner("ft_isdigit", "");
-		test_isdigit('0');
-		test_isdigit(':');
-		test_isdigit('a');
-	}
-}
+*/

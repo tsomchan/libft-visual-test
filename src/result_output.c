@@ -31,15 +31,16 @@ void	print_null(char *s, unsigned int n)
 	printf("\"");
 	while (n > 0)
 	{
-		if (*s == 0)
+		if  (*s == '\0' && *(s + 1) != '\0')
 			printf(" \\0 ");
+		else if (*s == '\0')
+			printf(" \\0");
 		else
 			printf("%c", *s);
 		s++;
 		n--;
 	}
 	printf("\"");
-	printf("\n");
 }
 
 void	print_arr(int *arr, int size)

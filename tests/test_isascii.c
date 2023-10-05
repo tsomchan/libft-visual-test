@@ -14,20 +14,7 @@
 
 void	test_isascii(int c)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("(\'%c\')\tdec = %d\toct = %o\n", c, c, c);
-	o = ft_isascii(c);
-	l = isascii(c);
-	print_result_text("output\t");
-	printf("%o\t", o);
-	print_result_text("libc\t");
-	printf("%d ", l);
-	compare_int(o, l);
-	divider_end();
+	testft_char(c, ft_isascii(c), isascii(c));
 }
 
 void	run_isascii(char **argv)
@@ -45,3 +32,20 @@ void	run_isascii(char **argv)
 		test_isascii(3896);
 	}
 }
+
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("(\'%c\')\tdec = %d\toct = %o\n", c, c, c);
+	o = ft_isascii(c);
+	l = isascii(c);
+	print_result_text("output\t");
+	printf("%o\t", o);
+	print_result_text("libc\t");
+	printf("%d ", l);
+	compare_int(o, l);
+	divider_end();
+*/

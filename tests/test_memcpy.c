@@ -12,8 +12,47 @@
 
 #include "testft.h"
 
-void	test_memcpy(void *dst, void *dst2, const void *src, size_t n)
+void	test_memcpy(void *dst, void *dst2, const void *src, const void *src2,
+			size_t n)
 {
+	testft_mem_arr(dst, dst2, src, src2, n, MEMCPY);
+}
+
+void	run_memcpy(char **argv)
+{
+	char	*mem_s1;
+	char	*mem_s2;
+
+	if (find_test(argv, "1", "memcpy") == 1)
+	{
+		banner("ft_memcpy", "");
+		test_memcpy(NULL, NULL, NULL, NULL, 1);
+		test_memcpy((char [99]){"12345"}, (char [99]){"12345"},
+					"M", "M", 1);
+		test_memcpy((char [99]){"12345"}, (char [99]){"12345"},
+					"AEIOU", "AEIOU", 5);
+		test_memcpy((char [99]){"12345"}, (char [99]){"12345"},
+			"AEIOUAEIOU", "AEIOUAEIOU", 10);
+		
+		mem_s1 = strdup("12345");
+		mem_s2 = strdup("12345");
+		test_memcpy(mem_s1, mem_s2,
+					mem_s1 + 1, mem_s2 + 1, 5);
+		
+		free(mem_s1); mem_s1 = strdup("12345");
+		free(mem_s2); mem_s2 = strdup("12345");
+		test_memcpy(mem_s1, mem_s2,
+					mem_s1, mem_s2, 5);
+		
+		free(mem_s1); mem_s1 = strdup("12345");
+		free(mem_s2); mem_s2 = strdup("12345");
+		test_memcpy(mem_s1 + 1, mem_s2 + 1,
+					mem_s1, mem_s2, 5);
+		free(mem_s1);	free(mem_s2);
+	}
+}
+
+/*
 	char	*o;
 	char	*l;
 
@@ -49,25 +88,4 @@ void	test_memcpy(void *dst, void *dst2, const void *src, size_t n)
 		// compare_mem(o, l, n);
 	}
 	divider_end();
-}
-
-void	run_memcpy(char **argv)
-{
-	char	*mem_s1;
-	char	*mem_s2;
-
-	if (find_test(argv, "1", "memcpy") == 1)
-	{
-		mem_s1 = "12345";
-		mem_s2 = "12345";
-		banner("ft_memcpy", "");
-		test_memcpy(NULL, NULL, NULL, 1);
-		test_memcpy((char [99]){"12345"}, (char [99]){"12345"}, "M", 1);
-		test_memcpy((char [99]){"12345"}, (char [99]){"12345"}, "AEIOU", 5);
-		test_memcpy((char [99]){"12345"}, (char [99]){"12345"},
-			"AEIOUAEIOU", 10);
-		test_memcpy(mem_s1, mem_s2, mem_s1 + 1, 5);
-		test_memcpy(mem_s1, mem_s1 + 1, "AEIOU", 5);
-		test_memcpy(mem_s1 + 1, mem_s1, "AEIOU", 5);
-	}
-}
+*/

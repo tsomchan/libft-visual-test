@@ -98,7 +98,8 @@ T_SRC_PTH	=	src/
 T_TEST_PTH	=	tests/
 MYFT		=	$(addprefix $(T_SRC_PTH), coloring.c cosmetic.c result_compare.c \
 			result_output.c result_text.c)
-T_HEADER	=	$(SRC) $(SRC_B) $(MYFT)
+TESTFT		=	$(addprefix $(T_TEST_PTH), testft.c)
+T_HEADER	=	$(SRC) $(SRC_B) $(MYFT) $(TESTFT)
 T_SRC		=	src/main.c $(T_HEADER)
 T_SRC		+=	$(addprefix $(T_TEST_PTH)test_, atoi.c bzero.c calloc.c isalnum.c \
 			isalpha.c isascii.c isdigit.c isprint.c itoa.c memchr.c memcmp.c \
@@ -122,7 +123,7 @@ endif
 	make norm
 
 val: norm
-	$(CC) $(CFLAG) $(T_SRC) -o $(T_NAME)
+	$(CC) $(CFLAG) -g $(T_SRC) -o $(T_NAME)
 	clear
 ifdef v
 	valgrind ./$(T_NAME) $(v)

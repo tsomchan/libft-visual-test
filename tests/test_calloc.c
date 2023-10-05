@@ -17,65 +17,9 @@ void	test_calloc(size_t count, size_t size, void *str)
 	void	*o;
 	void	*l;
 
-	divider_start();
-	print_result_text("input\t\t");
-	printf("count = %zu | size = %zu | str = \"%s\"\n", count, size, str);
 	o = ft_calloc(count, size);
 	l = calloc(count, size);
-	if (str != 0 && count > 0 && size > 0)
-	{
-		memcpy(o, str, count);
-		memcpy(l, str, count);
-	}
-	print_result_text("output\t");
-	if (str != 0 && count > 0 && size > 0)
-		printf("\"%s\"\n", o);
-	else
-		printf("\"not used\"\n");
-	print_result_text("libc\t\t");
-	if (str != 0 && count > 0 && size > 0)
-		printf("\"%s\"\n", l);
-	else
-		printf("\"not used\"\n");
-	compare_mem(o, l, count);
-	divider_end();
-	free(o);
-	free(l);
-}
-
-void	test_calloc_str(size_t count, size_t size, char *str)
-{
-	char	*o;
-	char	*l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("count = %zu | size = %zu | str = \"%s\"\n", count, size, str);
-	o = ft_calloc(count, size);
-	l = calloc(count, size);
-	if (str != 0 && count > 0 && size > 0)
-	{
-		memcpy(o, str, count);
-		memcpy(l, str, count);
-	}
-	print_result_text("output\t");
-	if (str != 0 && count > 0 && size > 0)
-		printf("\"%s\"\n", o);
-	else
-		printf("\"not used\"\n");
-	print_result_text("libc\t\t");
-	if (str != 0 && count > 0 && size > 0)
-		printf("\"%s\"\n", l);
-	else
-		printf("\"not used\"\n");
-	if (str != 0 && count > 0 && size > 0)
-		// compare_str(o, l);
-	compare_mem(o, l, count);
-	// if (memcmp(o, l, count * size) == 0)
-	// 	printf("EQUAL\n");
-	// else
-	// 	printf("NOT EQUAL\n");
-	divider_end();
+	testft_calloc(count, size, str, o, l);
 	free(o);
 	free(l);
 }
@@ -91,8 +35,7 @@ void	print_intl_arr(int long *arr, int size)
 		arr++;
 		size--;
 	}
-	printf("}");
-	printf("\n");
+	printf("} ");
 }
 
 void	put_intl(int long *dst, int long *src, int size)
@@ -106,10 +49,9 @@ void	test_calloc_intl(size_t count, size_t size, int long *intl)
 	int long	*o;
 	int long	*l;
 
-	divider_start();
-	print_result_text("input\t\t");
-	printf("count = %zu | size = %zu | \n\t\t  intl = ", count, size);
-	print_intl_arr(intl, count);
+	print_result_text("input ");
+	printf("count = %zu | size = %zu | intl = ", count, size);
+	print_intl_arr(intl, count); printf("\n");
 	o = ft_calloc(count, size);
 	l = calloc(count, size);
 	if (intl != 0)
@@ -122,17 +64,15 @@ void	test_calloc_intl(size_t count, size_t size, int long *intl)
 		o = 0;
 		l = 0;
 	}
-	print_result_text("output\t");
-	// printf("\"%s\"\n", o);
+	print_result_text("o ");
 	print_intl_arr(o, count);
-	print_result_text("libc\t\t");
-	// printf("\"%s\"\n", l);
+	print_result_text("l ");
 	print_intl_arr(l, count);
 	compare_mem(o, l, count);
+	printf("\n");
 	divider_end();
 	free(o);
 	free(l);
-
 }
 
 void	run_calloc(char **argv)
@@ -141,35 +81,62 @@ void	run_calloc(char **argv)
 	{
 		banner("ft_calloc", "");
 		
-		test_calloc_str(6, sizeof(char), "12345");
-		test_calloc_str(1, sizeof(char), "");
-		test_calloc_str(10, 0, 0);
-		test_calloc_str(10, 0, "");
-		test_calloc_str(1, 1, 0);
+		test_calloc(6, sizeof(char), "12345");
+		test_calloc(1, sizeof(char), "");
+		test_calloc(10, 0, 0);
+		test_calloc(10, 0, "");
+		test_calloc(1, 1, 0);
+		test_calloc(6, sizeof(char), "12345");
+		test_calloc(1, sizeof(char), "");
+		test_calloc(10, 0, 0);
+		test_calloc(10, 0, "");
+		test_calloc(1, 1, 0);
 		test_calloc_intl(10, sizeof(int long),
 		 	(int long[]){1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
 		test_calloc_intl(10, sizeof(int long),
 		 	(int long[]){0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
-		// test_calloc_str(6, sizeof(char), "12345");
-		// test_calloc_str(1, sizeof(char), "");
-		// test_calloc_str(10, 0, 0);
-		// test_calloc_str(10, 0, "");
-		// test_calloc_str(1, 1, 0);
-		// test_calloc_intl(10, sizeof(int long),
-		//  	(int long[]){1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
-		// test_calloc_intl(10, sizeof(int long),
-		//  	(int long[]){0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
-		// test_calloc_str(10, 8, "1234567812345678123456781234567812345678123456781234567812345678123456781234567");
+		test_calloc_intl(10, sizeof(int long),
+		 	(int long[]){1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
+		test_calloc_intl(10, sizeof(int long),
+		 	(int long[]){0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+		// test_calloc(10, 8, "1234567812345678123456781234567812345678123456781234567812345678123456781234567");
 	}
 }
 
+/* void	*o;
+	void	*l;
+
+	print_result_text("input\t\t");
+	printf("count = %zu | size = %zu | str = \"%s\"\n", count, size, str);
+	o = ft_calloc(count, size);
+	l = calloc(count, size);
+	if (str != 0 && count > 0 && size > 0)
+	{
+		memcpy(o, str, count);
+		memcpy(l, str, count);
+	}
+	print_result_text("o ");
+	if (str != 0 && count > 0 && size > 0)
+		printf("\"%s\"\n", o);
+	else
+		printf("\"not used\"\n");
+	print_result_text("l ");
+	if (str != 0 && count > 0 && size > 0)
+		printf("\"%s\"\n", l);
+	else
+		printf("\"not used\"\n");
+	compare_mem(o, l, count);
+	printf("\n");
+	free(o);
+	free(l);
+*/
 /*
 	void *a;	
 	a = malloc(0);
 	printf("%p\n", a);
 	*(unsigned char *)a = 'x';
 	printf("'%c'\n", (unsigned char)a);
-	divider_end();
+	
 */
 /*
 	i = 0;

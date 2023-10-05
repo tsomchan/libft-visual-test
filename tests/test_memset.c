@@ -14,6 +14,24 @@
 
 void	test_memset_str(void *b, void *b2, int c, size_t len)
 {
+	void *ptr;
+
+	ptr = strdup(b);
+	testft_mem_chr(ptr, c, len, ft_memset(b, c, len), memset(b2, c, len));
+	free(ptr);
+}
+
+void	run_memset(char **argv)
+{
+	if (find_test(argv, "1", "memset") == 1)
+	{
+		banner("ft_memset", "");
+		test_memset_str((char [99]){"12345"}, (char [99]){"12345"}, 'M', 2);
+		test_memset_str((char [99]){"12345"}, (char [99]){"12345"}, 'M', 10);
+	}
+}
+
+/*
 	char	*o;
 	char	*l;
 
@@ -28,18 +46,7 @@ void	test_memset_str(void *b, void *b2, int c, size_t len)
 	printf("%s + '%c' ", l, l[strlen(l)]);
 	compare_str(o, l);
 	divider_end();
-}
-
-void	run_memset(char **argv)
-{
-	if (find_test(argv, "1", "memset") == 1)
-	{
-		banner("ft_memset", "");
-		test_memset_str((char [99]){"12345"}, (char [99]){"12345"}, 'M', 2);
-		test_memset_str((char [99]){"12345"}, (char [99]){"12345"}, 'M', 10);
-	}
-}
-
+*/
 // void	test_memset_arr(void *b, void *b2, int c, size_t len)
 // {
 // 	divider_start();

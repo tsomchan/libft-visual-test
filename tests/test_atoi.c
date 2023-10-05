@@ -14,20 +14,7 @@
 
 void	test_atoi(const char*str)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("\"%s\"\n", str);
-	o = ft_atoi(str);
-	l = atoi(str);
-	print_result_text("output\t");
-	printf("%d\t", o);
-	print_result_text("libc\t");
-	printf("%d ", l);
-	compare_int(o, l);
-	divider_end();
+	testft_atoi(str);
 }
 
 char	*increase_nbr(char *str, int inc)
@@ -98,3 +85,20 @@ void	run_atoi(char **argv)
 		// test_atoi(" \t\r-123");
 	}
 }
+
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("\"%s\"\n", str);
+	o = ft_atoi(str);
+	l = atoi(str);
+	print_result_text("output\t");
+	printf("%d\t", o);
+	print_result_text("libc\t");
+	printf("%d ", l);
+	compare_int(o, l);
+	divider_end();
+*/

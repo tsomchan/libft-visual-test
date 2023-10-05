@@ -30,7 +30,7 @@ void	result_divider(int answer)
 void	print_error_text(char *s)
 {
 	printcolor("| ", BLUE);
-	printcolor("ERROR!\n", YELLOW);
+	printcolor("ERROR!", YELLOW);
 	if (s && *s != 0)
 	{
 		printf(" ");

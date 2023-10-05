@@ -17,6 +17,36 @@ void	test_strdup(const char *s1)
 	char	*o;
 	char	*l;
 
+	o = NULL;
+	l = NULL;
+	if (s1)
+	{
+		o = ft_strdup(s1);
+		l = strdup(s1);
+	}
+	testft_strdup(s1, o, l);
+	if (s1)
+	{
+		free(o);
+		free(l);
+	}
+}
+
+void	run_strdup(char **argv)
+{
+	if (find_test(argv, "1", "strdup") == 1)
+	{
+		banner("ft_strdup",
+			"copy a string, put it in a pointer created from malloc()");
+		test_strdup("test");
+		test_strdup(NULL);
+	}
+}
+
+/*
+	char	*o;
+	char	*l;
+
 	print_result_text("input\t\t");
 	printf("\"%s\"\n", s1);
 	if (s1)
@@ -34,15 +64,4 @@ void	test_strdup(const char *s1)
 	else
 		print_error_text("");
 	divider_end();
-}
-
-void	run_strdup(char **argv)
-{
-	if (find_test(argv, "1", "strdup") == 1)
-	{
-		banner("ft_strdup",
-			"copy a string, put it in a pointer created from malloc()");
-		test_strdup("test");
-		test_strdup(NULL);
-	}
-}
+*/

@@ -17,6 +17,8 @@ int	check_overlap(void *dst, void *src)
 	unsigned char	*d;
 	unsigned char	*s;
 
+	if (!dst || !src)
+		return (0);
 	d = dst;
 	s = src;
 	while (*d != 0)
@@ -41,10 +43,9 @@ void	compare_mem(void *s1, void *s2, size_t n)
 	printcolor("| ", BLUE);
 	printf("");
 	if (memcmp(s1, s2, n) == 0)
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }
 
 void	compare_str_arr(char **s1, char **s2, size_t n)
@@ -58,10 +59,9 @@ void	compare_str_arr(char **s1, char **s2, size_t n)
 			istrue = 0;
 	}
 	if (istrue)
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }
 
 void	compare_int(int i, int o)
@@ -69,10 +69,9 @@ void	compare_int(int i, int o)
 	printcolor("| ", BLUE);
 	printf("");
 	if (i == o)
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }
 
 void	compare_str(char *s, char *o)
@@ -83,19 +82,18 @@ void	compare_str(char *s, char *o)
 	printcolor("| ", BLUE);
 	printf("");
 	if (s == 0 && o == 0)
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else if (s != 0 && o != 0)
 	{
 		while (s[i] == o[i] && s[i] != 0)
 			i++;
 		if (s[i] == o[i])
-			printcolor("OO-TRUE-OO", GREEN);
+			printcolor("✓", GREEN);
 		else
-			printcolor("XX-FALSE-XX", RED);
+			printcolor("x", RED);
 	}
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }
 
 void	compare_null(char *s, char *s2, unsigned int n)
@@ -108,10 +106,9 @@ void	compare_null(char *s, char *s2, unsigned int n)
 	while (s[i] == s2[i] && i <= n)
 		i++;
 	if (s[i] == s2[i])
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }
 
 void	compare_arr(int *o, int *l, unsigned int n)
@@ -120,15 +117,12 @@ void	compare_arr(int *o, int *l, unsigned int n)
 
 	i = 0;
 	printcolor("| ", BLUE);
-	while (o[i] == l[i] && i <= n)
-	{
+	while (i < n && o[i] == l[i])
 		i++;
-	}
 	if (i == n)
 		i--;
 	if (o[i] == l[i])
-		printcolor("OO-TRUE-OO", GREEN);
+		printcolor("✓", GREEN);
 	else
-		printcolor("XX-FALSE-XX", RED);
-	printf("\n");
+		printcolor("x", RED);
 }

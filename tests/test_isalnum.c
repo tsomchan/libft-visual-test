@@ -14,6 +14,22 @@
 
 void	test_isalnum(int c)
 {
+	testft_char(c, ft_isalnum(c), isalnum(c));
+}
+
+void	run_isalnum(char **argv)
+{
+	if (find_test(argv, "1", "isalnum") == 1)
+	{
+		banner("ft_isalnum", "");
+		test_isalnum('0');
+		test_isalnum('1');
+		test_isalnum('A');
+		test_isalnum('a');
+	}
+}
+
+/*
 	int	o;
 	int	l;
 
@@ -28,16 +44,4 @@ void	test_isalnum(int c)
 	printf("%d ", l);
 	compare_int(o, l);
 	divider_end();
-}
-
-void	run_isalnum(char **argv)
-{
-	if (find_test(argv, "1", "isalnum") == 1)
-	{
-		banner("ft_isalnum", "");
-		test_isalnum('0');
-		test_isalnum('1');
-		test_isalnum('A');
-		test_isalnum('a');
-	}
-}
+*/

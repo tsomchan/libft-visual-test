@@ -20,40 +20,7 @@ char	*str_start_null(char *s)
 
 void	test_strlcat(char *dst, char *dst2, const char *src, size_t dstsize)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	if (dst)
-	{
-		printf("dst = ");
-		print_null(dst, dstsize + 1);
-	}
-	else
-		printf("dst is NULL\n");
-	printf("\t\t  src = %s | size = %zu\n", src, dstsize);
-	// if (src)
-	// {
-		o = ft_strlcat(dst, src, dstsize);
-		l = strlcat(dst2, src, dstsize);
-		print_result_text("output\t");
-		printf("%d ", o);
-		if (dst)
-			print_null(dst, dstsize + 1);
-		print_result_text("libc\t\t");
-		printf("%d ", l);
-		if (dst2)
-			print_null(dst2, dstsize + 1);
-		print_compare_text("Compare int ");
-		compare_int(o, l);
-		print_compare_text("Compare str ");
-		if (dst && dst2)
-			compare_null(dst, dst2, dstsize + 1);
-	// }
-	// else
-		// print_error_text("");
-	divider_end();
+	testft_strl(dst, dst2, src, dstsize, ft_strlcat, strlcat);
 }
 
 void	run_strlcat(char **argv)
@@ -89,3 +56,40 @@ void	run_strlcat(char **argv)
 		// 	str_start_null(((char [99]){"12345"})), "abc", 10);
 	}
 }
+
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	if (dst)
+	{
+		printf("dst = ");
+		print_null(dst, dstsize + 1);
+	}
+	else
+		printf("dst is NULL\n");
+	printf("\t\t  src = %s | size = %zu\n", src, dstsize);
+	// if (src)
+	// {
+		o = ft_strlcat(dst, src, dstsize);
+		l = strlcat(dst2, src, dstsize);
+		print_result_text("output\t");
+		printf("%d ", o);
+		if (dst)
+			print_null(dst, dstsize + 1);
+		print_result_text("libc\t\t");
+		printf("%d ", l);
+		if (dst2)
+			print_null(dst2, dstsize + 1);
+		print_compare_text("Compare int ");
+		compare_int(o, l);
+		print_compare_text("Compare str ");
+		if (dst && dst2)
+			compare_null(dst, dst2, dstsize + 1);
+	// }
+	// else
+		// print_error_text("");
+	divider_end();
+*/

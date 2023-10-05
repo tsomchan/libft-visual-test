@@ -14,30 +14,7 @@
 
 void	test_strlcpy(char *dst, char *dst2, const char *src, size_t dstsize)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("dst = \"%s\" | src = \"%s\" | size = %zu\n", dst, src, dstsize);
-	if (dst && dst2 && src)
-	{
-		o = ft_strlcpy(dst, src, dstsize);
-		l = strlcpy(dst2, src, dstsize);
-		print_result_text("output\t");
-		printf("%d ", o);
-		print_null(dst, dstsize + 1);
-		print_result_text("libc\t\t");
-		printf("%d ", l);
-		print_null((char *)dst2, dstsize + 1);
-		print_compare_text("Compare int ");
-		compare_int(o, l);
-		print_compare_text("Compare str ");
-		compare_null(dst, (char *)dst2, dstsize + 1);
-	}
-	else
-		print_error_text("");
-	divider_end();
+	testft_strl(dst, dst2, src, dstsize, ft_strlcpy, strlcpy);
 }
 
 void	test_strlcpy_segfault(char *dst, const char *src, size_t dstsize)
@@ -73,3 +50,30 @@ void	run_strlcpy(char **argv)
 		// test_strlcpy_segfault(NULL, NULL, 3);
 	}
 }
+
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("dst = \"%s\" | src = \"%s\" | size = %zu\n", dst, src, dstsize);
+	if (dst && dst2 && src)
+	{
+		o = ft_strlcpy(dst, src, dstsize);
+		l = strlcpy(dst2, src, dstsize);
+		print_result_text("output\t");
+		printf("%d ", o);
+		print_null(dst, dstsize + 1);
+		print_result_text("libc\t\t");
+		printf("%d ", l);
+		print_null((char *)dst2, dstsize + 1);
+		print_compare_text("Compare int ");
+		compare_int(o, l);
+		print_compare_text("Compare str ");
+		compare_null(dst, (char *)dst2, dstsize + 1);
+	}
+	else
+		print_error_text("");
+	divider_end();
+*/

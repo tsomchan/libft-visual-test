@@ -14,6 +14,21 @@
 
 void	test_isalpha(int c)
 {
+	testft_char(c, ft_isalpha(c), isalpha(c));
+}
+
+void	run_isalpha(char **argv)
+{
+	if (find_test(argv, "1", "isalpha") == 1)
+	{
+		banner("ft_isalpha", "");
+		test_isalpha('A');
+		test_isalpha('a');
+		test_isalpha('0');
+	}
+}
+
+/*
 	int	o;
 	int	l;
 
@@ -28,15 +43,4 @@ void	test_isalpha(int c)
 	printf("%d ", l);
 	compare_int(o, l);
 	divider_end();
-}
-
-void	run_isalpha(char **argv)
-{
-	if (find_test(argv, "1", "isalpha") == 1)
-	{
-		banner("ft_isalpha", "");
-		test_isalpha('A');
-		test_isalpha('a');
-		test_isalpha('0');
-	}
-}
+*/

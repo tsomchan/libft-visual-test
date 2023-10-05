@@ -14,6 +14,21 @@
 
 void	test_bzero(void *s, void *s2, size_t n)
 {
+	testft_bzero(s, s2, n);
+}
+
+void	run_bzero(char **argv)
+{
+	if (find_test(argv, "1", "bzero") == 1)
+	{
+		banner("ft_bzero", "add \"n\" characters of \"0\" byte");
+		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 0);
+		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 5);
+		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 2);
+	}
+}
+
+/*
 	size_t	ini_s;
 	size_t	ini_s2;
 
@@ -33,15 +48,4 @@ void	test_bzero(void *s, void *s2, size_t n)
 	else
 		compare_null(s, s2, ini_s2);
 	divider_end();
-}
-
-void	run_bzero(char **argv)
-{
-	if (find_test(argv, "1", "bzero") == 1)
-	{
-		banner("ft_bzero", "add \"n\" characters of \"0\" byte");
-		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 0);
-		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 5);
-		test_bzero((char [99]){"bbbbb"}, (char [99]){"bbbbb"}, 2);
-	}
-}
+*/

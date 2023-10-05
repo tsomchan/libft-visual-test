@@ -14,20 +14,7 @@
 
 void	test_tolower(int c)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("%d ('%c')\n", c, c);
-	o = ft_tolower(c);
-	l = tolower(c);
-	print_result_text("output\t");
-	printf("%d ('%c')\t", o, o);
-	print_result_text("libc\t");
-	printf("%d ('%c')\n", l, l);
-	compare_int(o, l);
-	divider_end();
+	testft_char(c, ft_tolower(c), tolower(c));
 }
 
 void	run_tolower(char **argv)
@@ -42,3 +29,20 @@ void	run_tolower(char **argv)
 		test_tolower(' ');
 	}
 }
+
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("%d ('%c')\n", c, c);
+	o = ft_tolower(c);
+	l = tolower(c);
+	print_result_text("output\t");
+	printf("%d ('%c')\t", o, o);
+	print_result_text("libc\t");
+	printf("%d ('%c')\n", l, l);
+	compare_int(o, l);
+	divider_end();
+*/

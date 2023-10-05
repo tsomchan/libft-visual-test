@@ -14,20 +14,7 @@
 
 void	test_isprint(int c)
 {
-	int	o;
-	int	l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("(\'%c\')\tdec = %d\toct = %o\n", c, c, c);
-	o = ft_isprint(c);
-	l = isprint(c);
-	print_result_text("output\t");
-	printf("%o\t", o);
-	print_result_text("libc\t");
-	printf("%d ", l);
-	compare_int(o, l);
-	divider_end();
+	testft_char(c, ft_isprint(c), isprint(c));
 }
 
 void	run_isprint(char **argv)
@@ -48,5 +35,21 @@ void	run_isprint(char **argv)
 	}
 }
 
+/*
+	int	o;
+	int	l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("(\'%c\')\tdec = %d\toct = %o\n", c, c, c);
+	o = ft_isprint(c);
+	l = isprint(c);
+	print_result_text("output\t");
+	printf("%o\t", o);
+	print_result_text("libc\t");
+	printf("%d ", l);
+	compare_int(o, l);
+	divider_end();
+*/
 	//	it seems I can't put in '\48' and '\49' 
 	//	because number "8" and "9" don't exist in octal

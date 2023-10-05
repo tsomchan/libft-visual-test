@@ -14,20 +14,9 @@
 
 void	test_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*o;
-	char	*l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("\"%s\"\t\"%s\"\t%zu\n", haystack, needle, len);
-	o = ft_strnstr(haystack, needle, len);
-	l = strnstr(haystack, needle, len);
-	print_result_text("output\t");
-	printf("%s\t", o);
-	print_result_text("libc\t");
-	printf("%s ", l);
-	compare_str(o, l);
-	divider_end();
+	testft_strnstr(haystack, needle, len,
+					ft_strnstr(haystack, needle, len),
+					strnstr(haystack, needle, len));
 }
 
 void	run_strnstr(char **argv)
@@ -44,3 +33,18 @@ void	run_strnstr(char **argv)
 		test_strnstr("lorem ipsum dolor sit amet", "dolor", 15);
 	}
 }
+
+/*
+	char	*o;
+	char	*l;
+
+	print_result_text("input\t\t");
+	printf("\"%s\"\t\"%s\"\t%zu\n", haystack, needle, len);
+	o = ft_strnstr(haystack, needle, len);
+	l = strnstr(haystack, needle, len);
+	print_result_text("output\t");
+	printf("%s\t", o);
+	print_result_text("libc\t");
+	printf("%s ", l);
+	compare_str(o, l);
+*/

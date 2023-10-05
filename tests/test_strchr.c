@@ -14,20 +14,7 @@
 
 void	test_strchr(const char *s, int c)
 {
-	char	*o;
-	char	*l;
-
-	divider_start();
-	print_result_text("input\t\t");
-	printf("\"%s\"\t'%c'\n", s, c);
-	o = ft_strchr(s, c);
-	l = strchr(s, c);
-	print_result_text("output\t");
-	printf("\"%s\"\t", o);
-	print_result_text("libc\t");
-	printf("\"%s\"\n", l);
-	compare_str(o, l);
-	divider_end();
+	testft_strchr(s, c, ft_strchr(s, c), strchr(s, c));	
 }
 
 void	run_strchr(char **argv)
@@ -44,6 +31,23 @@ void	run_strchr(char **argv)
 		test_strchr("A12345A", 'A');
 		test_strchr("2--2--3", '2');
 		test_strchr("2--2--3", '2' + 256);
-		printf("%c\n", '2' + 256);
+		// printf("%c\n", '2' + 256);
 	}
 }
+
+/*
+	char	*o;
+	char	*l;
+
+	divider_start();
+	print_result_text("input\t\t");
+	printf("\"%s\"\t'%c'\n", s, c);
+	o = ft_strchr(s, c);
+	l = strchr(s, c);
+	print_result_text("output\t");
+	printf("\"%s\"\t", o);
+	print_result_text("libc\t");
+	printf("\"%s\"\n", l);
+	compare_str(o, l);
+	divider_end();
+*/

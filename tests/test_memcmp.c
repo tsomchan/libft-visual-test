@@ -14,6 +14,36 @@
 
 void	test_memcmp(const void *s, const void *s2, size_t n)
 {
+	int o;
+	int l;
+
+	o = 0;
+	l = 0;
+	if ((s && s2) && n != 0)
+	{
+		o = ft_memcmp(s, s2, n);
+		l = memcmp(s, s2, n);
+	}
+	testft_cmp(s, s2, n, o, l, MEMCMP);
+}
+
+void	run_memcmp(char **argv)
+{
+	if (find_test(argv, "1", "memcmp") == 1)
+	{
+		banner("ft_memcmp", "");
+		test_memcmp("12345", "1234a", 5);
+		test_memcmp("", "1234a", 5);
+		test_memcmp("12345", "1234a", 0);
+		test_memcmp("", "1234a", 0);
+		test_memcmp(0, 0, 0);
+		// printcolor("run\n", YELLOW);
+		test_memcmp(0, 0, 5);
+		test_memcmp(0, "12345", 5);
+	}
+}
+
+/*
 	int	o;
 	int	l;
 
@@ -33,19 +63,4 @@ void	test_memcmp(const void *s, const void *s2, size_t n)
 	else 
 		print_error_text("");
 	divider_end();
-}
-
-void	run_memcmp(char **argv)
-{
-	if (find_test(argv, "1", "memcmp") == 1)
-	{
-		banner("ft_memcmp", "");
-		test_memcmp("12345", "1234a", 5);
-		test_memcmp("", "1234a", 5);
-		test_memcmp("12345", "1234a", 0);
-		test_memcmp("", "1234a", 0);
-		test_memcmp(0, 0, 0);
-		test_memcmp(0, "12345", 5);
-		test_memcmp(0, 0, 5);
-	}
-}
+*/
